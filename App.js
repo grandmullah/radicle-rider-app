@@ -1,12 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
+import React from "react";
+import { NativeBaseProvider, Box } from "native-base";
+const {
+  mnemonicGenerate,
+  mnemonicToMiniSecret,
+  mnemonicValidate,
+  ed25519PairFromSeed
+} = require('@polkadot/util-crypto');
 export default function App() {
+  const mnemonicAlice = mnemonicGenerate();
+  const seedAlice = mnemonicToMiniSecret(mnemonicAlice);
+
+  // Generate new public/secret keypair for Alice from the supplied seed
+  const { publicKey, secretKey } = ed25519PairFromSeed(seedAlice);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider>
+     
+    </NativeBaseProvider>
   );
 }
 
