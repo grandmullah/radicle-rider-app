@@ -17,3 +17,6 @@ web-build/
 .metro-health-check*
 src/._jd.js
 **/._*
+android/
+ios/
+.env
