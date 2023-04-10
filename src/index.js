@@ -1,6 +1,5 @@
 import{ AppPinStack, AppStack} from './routes'
-import { createDrawerNavigator } from '@react-navigation/drawer';
-const Drawer = createDrawerNavigator();
+
 import { View,Button } from 'native-base';
 
  export function Home() {

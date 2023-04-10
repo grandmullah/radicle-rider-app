@@ -8,16 +8,7 @@ export  function HomeScreen() {
   return (
     <SafeAreaView>
         <Box>
-          <VStack>
-            <Center   h="20" bg="indigo.300" rounded="md" shadow={3} >
-          
-            </Center>
-          </VStack>
-          <VStack>
-            <Center   h="20" bg="indigo.300" rounded="md" shadow={3} >
-          
-            </Center>
-          </VStack>
+
           <MapScreen />
         </Box>
     </SafeAreaView>

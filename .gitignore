@@ -17,8 +17,10 @@ web-build/
 .metro-health-check*
 
 
+
 **/._*
 android/
 ios/
 .env
+
 

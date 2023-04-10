@@ -18,11 +18,15 @@ export  function MapScreen() {
 
   // }
   const getLocation = async () => {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.log('rgrant permisoi')
+
+    let { granted } = await Location.requestForegroundPermissionsAsync();
+      if (!granted) {
+        console.log('rgrant permisoi',granted,)
+        const permission = Location.useForegroundPermissions()
+        console.log(permission)
         // setErrorMsg('Permission to access location was denied');
-        return;
+        return permission;
+
       }
 
       let {coords} = await Location.getCurrentPositionAsync({});
@@ -38,7 +42,8 @@ export  function MapScreen() {
             <Center>
         
                 <MapView style={{width: '100%',
-                height: '90%',}}
+                height: '100%',}}
+
                 provider={PROVIDER_GOOGLE}
                 customMapStyle={mapStyle}
                 showsUserLocation
@@ -46,12 +51,20 @@ export  function MapScreen() {
                 initialRegion={{...carsAround[0],latitudeDelta:0.008,longitudeDelta:0.008}}
                 >
                 {carsAround.map((item,index)=>
-                  <Marker size={'xs'} coordinate={item} key={index.toString()} image={require('../../../assets/carMarker.png')} style ={styles.carsAround}/>
+
+                 <Marker  coordinate={item} key={index.toString()} 
+                  image={require('../../../assets/carMarker.png')}
+                  flat
+                  style={styles.carsAround}
+                   />
+                  
+
                 )}
                 </MapView>
         
             </Center>
         </VStack>
+
      </View>
   );
 }
