@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "radicle-rider",
-    "slug": "radicle-rider",
+    "name": "radicle-rider-app",
+    "slug": "radicle-rider-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,14 +15,33 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false,
+        "googleMapsApiKey":""
+      },
+      "bundleIdentifier": "com.radicle.radiclerider"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.radicle.ridiclerider",
+      "config":{
+        "googleMaps":{
+          "apiKey":""
+        }
       }
     },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     }
