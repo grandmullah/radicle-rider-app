@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -18,7 +18,7 @@
       "supportsTablet": true,
       "config": {
         "usesNonExemptEncryption": false,
-        "googleMapsApiKey":""
+        "googleMapsApiKey": "AIzaSyAh11NQ4gsCdBBtNgA-it4oqDsJP6_7-Zo"
       },
       "bundleIdentifier": "com.radicle.radiclerider"
     },
@@ -27,12 +27,17 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.radicle.ridiclerider",
-      "config":{
-        "googleMaps":{
-          "apiKey":""
+      "package": "com.radicle.radiclerider",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAh11NQ4gsCdBBtNgA-it4oqDsJP6_7-Zo"
         }
-      }
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE"
+      ]
     },
     "plugins": [
       [
@@ -44,6 +49,11 @@
     ],
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e99ace3d-d210-48db-9b7d-e0d40b21bcd7"
+      }
     }
   }
 }

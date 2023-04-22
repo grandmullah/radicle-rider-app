@@ -2,12 +2,16 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from 'react-native';
 import { HomeScreen } from "../screens/HomeScreen";
+import { RequestScreen } from "../screens/RequestScreen";
+
+
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function AppStack() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-      <Screen name="HomeSreen" options={{headerShown:false}}component={HomeScreen} />
+      <Screen name="HomeScreen" options={{headerShown:false}}component={HomeScreen} />
+      <Screen name="RequestScreen" options={{headerShown:false}}component={RequestScreen} />
     </Navigator>
   );
 }

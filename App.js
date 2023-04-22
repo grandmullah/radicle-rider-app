@@ -46,6 +46,7 @@ function SettingsScreen() {
     <NativeBaseProvider>
       <NavigationContainer >
         <Tab.Navigator
+        tabBarHideOnKeyboard
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
