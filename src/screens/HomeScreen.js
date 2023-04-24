@@ -4,47 +4,40 @@ import { Box, Center, VStack,Input } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {MapScreen} from '../components/HomeScreen/MapScreen';
 import { useSelector } from 'react-redux';
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetTextInput,BottomSheetView } from '@gorhom/bottom-sheet';
 
 export  function HomeScreen({navigation}) {
   const [isFocused, setIsFocused] = useState(false);
-  const screenHeight = Dimensions.get('window').height;
-  const {origin,destination} = useSelector((state) => state.location)
-  
+  const { height } = Dimensions.get('window');
+  const {origin,destination,ride} = useSelector((state) => state.location)
+  const [rideReady, setRideReady ] = useState(false)
 
-    // ref
-    const bottomSheetRef = useRef(null);
+  const handlePress = () => {
+    navigation.navigate('RequestScreen');
+  };
 
-    // variables
-    const snapPoints = useMemo(() => ['5%', '10%'], []);
-  
-    // callbacks
-    const handleSheetChanges = useCallback((index) => {
-      console.log('handleSheetChanges', index);
-    }, []);
-
-  
+  useEffect(()=>{
+    const ready = (Object.keys(ride).length != 0 )
+    setRideReady(ready)
+  },[ride])
 
   return (
-    <SafeAreaView style={{ flex: 1 }} >
-      <VStack  style={{ flex: 1 }} >
-       
-            <MapScreen origin={origin} destination={destination}  style={{ flex: 1 }}/>
+    <SafeAreaView style={{ flex: 1 }} > 
+    <VStack style={{ flex: 1,height:height }} >
+      <Box  h={height*0.8}>
+        
+        <MapScreen  origin={origin} destination={destination}  />
+      </Box>
+      <Box style={{flex:1, backgroundColor:'white', borderColor:'black', borderTopEndRadius:5,
+      borderTopLeftRadius:5 ,height:height*0.15}}>
+      <View >
+        <TouchableOpacity onPress={handlePress}>
+        <Text style={styles.input}></Text>
+        </TouchableOpacity>
           
+     </View>
+      </Box>
 
-      <VStack style={{ flex: 1 }} >
-        <BottomSheet
-          ref={bottomSheetRef}
-          index={1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}
-          >
-            <View style={styles.contentContainer}>
-              <Text>Awesome 🎉</Text>
-            </View>
-        </BottomSheet>
-      </VStack>
-      
       </VStack>
     </SafeAreaView>
     
@@ -53,57 +46,38 @@ export  function HomeScreen({navigation}) {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  
+  input: {
+    padding:5,
+    margin:8,
+    marginTop: 8,
+    marginBottom: 10,
+    borderRadius: 10,
+    fontSize: 16,
+    lineHeight: 20,
+    padding: 8,
+    backgroundColor: 'rgba(151, 151, 151, 0.25)',
   },
-  div: {
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    right: 10,
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 5,
-    elevation: 5,
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  // input: {
-  //   height: 40,
-  //   borderColor: '#ccc',
-  //   borderWidth: 1,
-  //   borderRadius: 5,
-  //   marginVertical: 5,
-  //   paddingHorizontal: 10,
-  //   backgroundColor: '#f9f9f9',
-  //   marginLeft:5
-  // },
-  container1: {
+  topLeft: {
     flex:1,
     position: 'absolute',
-    bottom: 20,
+    top: 0,
     left: 0,
+    padding: 10,
+    backgroundColor: 'white',
+  },
+  topRight: {
+    position: 'absolute',
+    top: 0,
     right: 0,
+    padding: 10,
+    backgroundColor: 'white',
+  },
+  content: {
+  
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  button: {
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  text: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  
 });
 
 

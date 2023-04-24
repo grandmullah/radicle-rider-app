@@ -1,4 +1,5 @@
-{
+import 'dotenv/config';
+export default  {
   "expo": {
     "name": "radicle-rider-app",
     "slug": "radicle-rider-app",
@@ -50,10 +51,11 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "e99ace3d-d210-48db-9b7d-e0d40b21bcd7"
-      }
+    extra: {
+      eas: {
+        projectId: "e99ace3d-d210-48db-9b7d-e0d40b21bcd7"
+      },
+      API_KEY_MAP: process.env.API_KEY_MAP
     }
   }
 }

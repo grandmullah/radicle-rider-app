@@ -13,6 +13,7 @@ import { updateOrigin,updateDestination } from '../app/features/locationSlice';
 export const RequestScreen = ({navigation}) => {
     const[destination,setDestination] = useState(false)
     const dispatch = useDispatch()
+    const API_MAP_KEY = process.env.API_KEY_MAP
 
     // useEffect(()=>{
     //     Geolocation.getCurrentPosition(info => console.log(info));
@@ -47,7 +48,7 @@ export const RequestScreen = ({navigation}) => {
                     // currentLocation ={true}
                     nearbyPlacesAPI = 'GooglePlacesSearch'
                     query={{
-                        key: 'AIzaSyAh11NQ4gsCdBBtNgA-it4oqDsJP6_7-Zo',
+                        key: API_MAP_KEY,
                         language: 'en',
                         components: 'country:ke',
                     }}
@@ -74,7 +75,7 @@ export const RequestScreen = ({navigation}) => {
                     fetchDetails ={true}
                     nearbyPlacesAPI = 'GooglePlacesSearch'
                     query={{
-                        key: 'AIzaSyAh11NQ4gsCdBBtNgA-it4oqDsJP6_7-Zo',
+                        key: API_MAP_KEY,
                         language: 'en',
                         components: 'country:ke',
                     }}

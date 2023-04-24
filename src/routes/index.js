@@ -10,8 +10,8 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export function AppStack() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-      <Screen name="HomeScreen" options={{headerShown:false}}component={HomeScreen} />
-      <Screen name="RequestScreen" options={{headerShown:false}}component={RequestScreen} />
+      <Screen name="HomeScreen" options={{headerShown:false}} component={HomeScreen} />
+      <Screen name="RequestScreen" options={{headerShown:false}} component={RequestScreen} />
     </Navigator>
   );
 }
