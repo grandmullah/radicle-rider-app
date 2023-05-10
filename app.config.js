@@ -19,7 +19,7 @@ export default  {
       "supportsTablet": true,
       "config": {
         "usesNonExemptEncryption": false,
-        "googleMapsApiKey": "AIzaSyAh11NQ4gsCdBBtNgA-it4oqDsJP6_7-Zo"
+        "googleMapsApiKey": process.env.API_KEY_MAP
       },
       "bundleIdentifier": "com.radicle.radiclerider"
     },
@@ -31,7 +31,7 @@ export default  {
       "package": "com.radicle.radiclerider",
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyAh11NQ4gsCdBBtNgA-it4oqDsJP6_7-Zo"
+          "apiKey": process.env.API_KEY_MAP
         }
       },
       "permissions": [

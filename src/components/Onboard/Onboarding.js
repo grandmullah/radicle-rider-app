@@ -5,7 +5,7 @@ import { Button, Icon } from '@rneui/themed';
 import Onboarding from 'react-native-onboarding-swiper';
 import { generateMnemonic } from '../Helpers/helpers';
 
-export const Onboard = ({}) => (
+export const Onboard = ({navigation}) => (
   <Onboarding
     showDone={false}
     onSkip={() => Alert.alert('Skipped')}
@@ -55,6 +55,7 @@ export const Onboard = ({}) => (
             textStyle={{ color: '#003c8f' }}
             onPress={async () => {
               await generateMnemonic()
+              navigation.navigate('HomeScreen')
             }}
           />
         ),

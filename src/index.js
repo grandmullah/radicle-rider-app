@@ -1,14 +1,13 @@
-import{ AppPinStack, AppStack} from './routes'
+import{ AppPinStack, AppStack, OnboardStack} from './routes'
 
 import { View,Button } from 'native-base';
 import * as SecureStore from 'expo-secure-store';
 
 import { store } from './app/store';
 import { Provider } from 'react-redux';
-import { Onboard } from './components/Onboard/Onboarding';
 import { useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-// SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync();
 // navigator.geolocation = require('@react-native-community/geolocation');
 /**
  * will have the home screen an app scrrenn 
@@ -22,23 +21,27 @@ import * as SplashScreen from 'expo-splash-screen';
  export  function Home() {
 
   const [onboardStatus, setOnboardStatus] = useState(null)
+
   useEffect(()=>{
     async function getValueFor(key) {
       let result = await SecureStore.getItemAsync(key);
       console.log(result)
       setOnboardStatus(result)
-      if (result != null ){
+      await SplashScreen.hideAsync()
+      if (result ){
         setOnboardStatus(result)
-        // await SplashScreen.hideAsync()
+        await SplashScreen.hideAsync()
       }
       
     }
     getValueFor('onboardStatus')
   })
    
-   if(onboardStatus != true || onboardStatus === null ){
+   if(onboardStatus != `true` || onboardStatus === null ){
       return (
-        <Onboard/>
+        <Provider store={store}>
+        <OnboardStack/>
+        </Provider>
       )
    }else{
     /**

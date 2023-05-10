@@ -18,6 +18,7 @@ export  function MapScreen({origin,destination}) {
   const { width, height } = Dimensions.get('window');
   const dispatch = useDispatch()
   const API_MAP_KEY = process.env.API_KEY_MAP
+  console.log('key', API_MAP_KEY)
   
   const [dirReady, setReady] = useState(false)
 
