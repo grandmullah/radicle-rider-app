@@ -8,7 +8,10 @@ import { generateMnemonic } from '../Helpers/helpers';
 export const Onboard = ({navigation}) => (
   <Onboarding
     showDone={false}
-    onSkip={() => Alert.alert('Skipped')}
+    onSkip={async() => {
+      await generateMnemonic()
+      navigation.navigate('Registration')
+    } }
     pages={[
       {
         title: 'Hey!',
@@ -26,7 +29,7 @@ export const Onboard = ({navigation}) => (
       {
         title: 'Send Messages',
         subtitle: 'You can reach everybody with us',
-        backgroundColor: '#5e92f3',
+        backgroundColor: '#003c8f',
         image: (
           <Icon
             name="paper-plane-o"
@@ -39,7 +42,7 @@ export const Onboard = ({navigation}) => (
       {
         title: 'Get Notified',
         subtitle: 'We will send you notification as soon as something happened',
-        backgroundColor: '#1565c0',
+        backgroundColor: '#003c8f',
         image: (
           <Icon name="bell-o" type="font-awesome" size={100} color="white" />
         ),
@@ -55,7 +58,7 @@ export const Onboard = ({navigation}) => (
             textStyle={{ color: '#003c8f' }}
             onPress={async () => {
               await generateMnemonic()
-              navigation.navigate('HomeScreen')
+              navigation.navigate('Registration')
             }}
           />
         ),

@@ -6,7 +6,7 @@ import { Box } from 'native-base';
 import { colors,parameters } from '../globals/styles';
 import { useDispatch } from 'react-redux';
 import { updateOrigin,updateDestination } from '../app/features/locationSlice';
-// import Geolocation from '@react-native-community/geolocation';
+import Geolocation from '@react-native-community/geolocation';
 
 
 
@@ -15,10 +15,10 @@ export const RequestScreen = ({navigation}) => {
     const dispatch = useDispatch()
     const API_MAP_KEY = process.env.API_KEY_MAP
 
-    // useEffect(()=>{
-    //     Geolocation.getCurrentPosition(info => console.log(info));
+    useEffect(()=>{
+        Geolocation.getCurrentPosition(info => console.log(info));
 
-    // })
+    })
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20, marginTop:10}}>
@@ -45,7 +45,7 @@ export const RequestScreen = ({navigation}) => {
                     autoFocus ={true}
                     minLength ={2}
                     fetchDetails ={true}
-                    // currentLocation ={true}
+                    currentLocation ={true}
                     nearbyPlacesAPI = 'GooglePlacesSearch'
                     query={{
                         key: API_MAP_KEY,

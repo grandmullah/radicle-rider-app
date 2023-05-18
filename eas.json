@@ -4,6 +4,9 @@
   },
   "build": {
     "development": {
+      "env":{
+        "API_KEY_MAP":"AIzaSyBUnZDF50vtPTZ9kdd8ydGfVgLByqM2I3w"
+      },
       "developmentClient": true,
       "distribution": "internal",
       "ios": {
@@ -18,6 +21,9 @@
       }
     },
     "production": {
+      "env":{
+        "API_KEY_MAP":"AIzaSyBUnZDF50vtPTZ9kdd8ydGfVgLByqM2I3w"
+      },
       "ios": {
         "resourceClass": "m-medium"
       }
