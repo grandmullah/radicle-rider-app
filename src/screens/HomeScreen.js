@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useMemo,useCallback,useRef} from 'react';
 import { View, Text,StyleSheet,Dimensions,TextInput,TouchableOpacity} from 'react-native';
-import { Box, Center, VStack,Input } from 'native-base';
+import { Box, Center, VStack,Input,Pressable, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {MapScreen} from '../components/HomeScreen/MapScreen';
 import { useSelector } from 'react-redux';
@@ -30,12 +30,16 @@ export  function HomeScreen({navigation}) {
       </Box>
       <Box style={{flex:1, backgroundColor:'white', borderColor:'black', borderTopEndRadius:5,
       borderTopLeftRadius:5 ,height:height*0.15}}>
-      <View >
-        <TouchableOpacity onPress={handlePress}>
-        <Text style={styles.input}></Text>
-        </TouchableOpacity>
-          
-     </View>
+      
+      <Center padding={5}>
+        <Stack w={'100%'}>
+          <Center>
+            <Pressable w={'100%'} onPress={handlePress}>
+            <Text style={styles.input}></Text>
+            </Pressable>
+          </Center>
+        </Stack>
+     </Center>
       </Box>
 
       </VStack>

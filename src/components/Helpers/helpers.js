@@ -18,7 +18,7 @@ export async function generateMnemonic ( ) {
     // const { publicKey, secretKey } = ed25519PairFromSeed(seedAlice);
     // console.log(publicKey)
     await SecureStore.setItemAsync('mnemonic', `${mnemonicAlice}`);
-    // await SecureStore.setItemAsync('onboardStatus', `true`);
+    await SecureStore.setItemAsync('onboardStatus', `true`);
 
   
 }

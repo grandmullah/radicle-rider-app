@@ -98,7 +98,7 @@ export  function MapScreen({origin,destination}) {
                       strokeColor={colors.blue}
                       apikey={API_MAP_KEY}
                       timePrecision='now'
-                      mode='DRIVING'
+                      mode='TRANSIT'
                       onReady={result => {
                         console.log(`Distance: ${result.distance} km`)
                         console.log(`Duration: ${result.duration} min.,${result.fares},${result.waypointOrder}`)

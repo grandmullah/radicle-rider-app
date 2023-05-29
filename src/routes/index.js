@@ -7,6 +7,7 @@ import { RequestScreen } from "../screens/RequestScreen";
 import { Onboard } from "../components/Onboard/Onboarding";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RegistrationScreen } from "../components/Onboard/registrationScreen";
+import { Icon } from '@rneui/themed';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -16,15 +17,31 @@ export function AppStack() {
  
   const isLargeScreen = Dimensions.width >= 768;
   return (
-    <Navigator  useLegacyImplementation defaultStatus="open"
-    screenOptions={{
-      drawerType: isLargeScreen ? 'permanent' : 'back',
-      drawerStyle: isLargeScreen ? null : { width: '40%' },
-      overlayColor: 'transparent',
-    }}>
-      <Screen name="HomeScreen" options={{headerShown:false}} component={HomeScreen} />
-      <Screen name="RequestScreen" options={{headerShown:false}} component={RequestScreen} />
-    </Navigator>
+
+    <Tab.Navigator
+      tabBarHideOnKeyboard
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Home') {
+            iconName = focused
+              ? 'info'
+              : 'info';
+          } else if (route.name === 'Settings') {
+            iconName = focused ? 'info' : 'info';
+          }
+
+          // You can return any component that you like here!
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+        headerShown:false,
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+      })}>
+        <Tab.Screen name="Home" component={  HomeScreens } />
+        <Tab.Screen name="Home2" component={  SettingStack } />
+      </Tab.Navigator>
   );
 }
 export function OnboardStack() {
@@ -45,6 +62,16 @@ export function SettingStack() {
     
     </Navigator>
   );
+}
+
+export function HomeScreens () {
+  return (
+    <Navigator screenOptions={{ headerShown: false }}>
+      <Screen name="HomeScreen" options={{headerShown:false}} component={HomeScreen} />
+      <Screen name="RequestScreen" options={{headerShown:false}} component={RequestScreen} />
+    </Navigator>
+  )
+
 }
 
 

@@ -24,9 +24,11 @@ export const wsProvider = new WsProvider('ws://35.232.24.147:9944');
 
 ApiPromise
   .create({ provider: wsProvider })
-  .then((api) =>
+  .then(async(api) =>{
+  const chain = await api.rpc.system.chain();
+   console.log(chain)
     console.log(api.genesisHash.toHex())
-  );
+  });
 
 /**
  * will have the home screen an app scrrenn 
@@ -71,7 +73,7 @@ ApiPromise
     return (
       <SafeAreaProvider>
       <Provider store={store}>
-        <App/>
+        <AppStack/>
       </Provider>
       </SafeAreaProvider>
       
@@ -85,34 +87,6 @@ ApiPromise
    * @returns 
    */
  
-  export function App() {
-    return (
-      <Tab.Navigator
-      tabBarHideOnKeyboard
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
 
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'ios-list-circle' : 'ios-list';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        headerShown:false,
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
-      })}>
-        <Tab.Screen name="Home" component={  AppStack } />
-        <Tab.Screen name="Home" component={  SettingStack } />
-      </Tab.Navigator>
-        
-    );
-  }
 
   
