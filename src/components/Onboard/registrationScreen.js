@@ -5,7 +5,7 @@ import * as SecureStore from 'expo-secure-store';
 import PhoneInput from 'react-phone-number-input'
 import { Keyring } from '@polkadot/api';
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { wsProvider } from '../..';
+export const wsProvider = new WsProvider('ws://35.232.24.147:9944');
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -31,12 +31,13 @@ export const RegistrationScreen = () => {
         const api = await ApiPromise.create({ provider: wsProvider });
         const now = await api.query.timestamp.now();
         console.log(now,api.tx.identity)
+        
+        const txHash = await api.tx.identity
+        // console.log(api.tx)
+        .addUsr('0724341383', 'colllins')
+        .signAndSend(newPair);
+        console.log(`Submitted with hash ${txHash}`);
         navigation.navigate('HomeScreen')
-    // const txHash = await api.tx.identity
-    // // console.log(api.tx)
-    // .addUsr('0724341383', 'colllins')
-    // .signAndSend(newPair);
-    // console.log(`Submitted with hash ${txHash}`);
     } catch (error) {
         console.log(error)
     }

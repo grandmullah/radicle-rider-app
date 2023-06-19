@@ -58,7 +58,7 @@ export const Onboard = ({navigation}) => (
             textStyle={{ color: '#003c8f' }}
             onPress={async () => {
               await generateMnemonic()
-              navigation.navigate('Registration')
+              navigation.navigate('HomeScreen')
             }}
           />
         ),

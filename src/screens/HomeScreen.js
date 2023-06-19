@@ -1,10 +1,11 @@
 import React,{useState,useEffect,useMemo,useCallback,useRef} from 'react';
 import { View, Text,StyleSheet,Dimensions,TextInput,TouchableOpacity} from 'react-native';
-import { Box, Center, VStack,Input,Pressable, Stack } from 'native-base';
+import { Box, Center, VStack,Input,Pressable, Stack, Button } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {MapScreen} from '../components/HomeScreen/MapScreen';
 import { useSelector } from 'react-redux';
 import BottomSheet, { BottomSheetTextInput,BottomSheetView } from '@gorhom/bottom-sheet';
+import axios from 'axios';
 
 export  function HomeScreen({navigation}) {
   const [isFocused, setIsFocused] = useState(false);
@@ -15,6 +16,19 @@ export  function HomeScreen({navigation}) {
   const handlePress = () => {
     navigation.navigate('RequestScreen');
   };
+  const handlebooking = async() => {
+    try {
+      const jj = {origin:{...origin},destination: {...destination}, ride:{...ride},timestamp:Date.now()}
+      console.log('here',jj)
+      const resp = await axios.post('https://41c7-41-80-114-137.ngrok-free.app/request_ride',jj)
+      console.log(resp.data)
+      // dispatch  waiting 
+      
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
 
   useEffect(()=>{
     const ready = (Object.keys(ride).length != 0 )
@@ -23,7 +37,7 @@ export  function HomeScreen({navigation}) {
 
   return (
     <SafeAreaView style={{ flex: 1 }} > 
-    <VStack style={{ flex: 1,height:height }} >
+    <VStack style={{ flex: 1,height:height }} alignContent={'center'} >
       <Box  h={height*0.8}>
         
         <MapScreen  origin={origin} destination={destination}  />
@@ -31,14 +45,24 @@ export  function HomeScreen({navigation}) {
       <Box style={{flex:1, backgroundColor:'white', borderColor:'black', borderTopEndRadius:5,
       borderTopLeftRadius:5 ,height:height*0.15}}>
       
-      <Center padding={5}>
-        <Stack w={'100%'}>
+      <Center padding={5} alignContent={'center'}>
+      {rideReady? 
+        <Center alignItems={'center'} alignContent={'center'}>
+        <Stack>
+        </Stack>
+        <Button onPress={handlebooking}>book Ride</Button>
+      </Center>
+      :
+        <Stack w={'100%'} alignContent={'center'}>
           <Center>
             <Pressable w={'100%'} onPress={handlePress}>
             <Text style={styles.input}></Text>
             </Pressable>
           </Center>
         </Stack>
+      }
+
+
      </Center>
       </Box>
 

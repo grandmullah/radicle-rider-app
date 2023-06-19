@@ -25,7 +25,7 @@ export default  {
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.radicle.radiclerider",
