@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 const initialState = {
     currentLocation:{},
     origin: {},
     destination:{},
-    ride:{}
+    ride:{},
+    availableRiders:[]
 }
 
 export const locationSlice = createSlice({
@@ -18,14 +20,29 @@ export const locationSlice = createSlice({
     updateDestination: (state,action) =>{
       state.destination = action.payload
     },
-    updateRide(state,action){
+    updateRide:(state,action)=>{
       state.ride =action.payload
+    },
+    updatecurrentLocation: (state,action) => {
+      state.currentLocation =  action.payload
     }
     
   },
 })
 
+
 // Action creators are generated for each case reducer function
-export const {updateOrigin,updateDestination,updateRide } = locationSlice.actions
+export const {updateOrigin,updateDestination,updateRide,updatecurrentLocation } = locationSlice.actions
 
 export default locationSlice.reducer
+
+export const updatedrivers = location => {
+  return  async (dispatch, getState) => {
+    const stateBefore = getState()
+    console.log(`Counter before: ${stateBefore.availableRiders}`)
+    const resp = await axios.post('https://36bd-41-80-114-214.ngrok-free.app/request_ride',location)
+    console.log(resp.data)
+    // const stateAfter = getState()
+    // console.log(`Counter after: ${stateAfter.counter}`)
+  }
+}

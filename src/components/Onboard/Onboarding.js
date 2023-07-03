@@ -16,7 +16,7 @@ export const Onboard = ({navigation}) => (
       {
         title: 'Hey!',
         subtitle: 'Welcome to $App!',
-        backgroundColor: '#003c8f',
+        backgroundColor: '#03353C',
         image: (
           <Icon
             name="hand-peace-o"
@@ -29,7 +29,7 @@ export const Onboard = ({navigation}) => (
       {
         title: 'Send Messages',
         subtitle: 'You can reach everybody with us',
-        backgroundColor: '#003c8f',
+        backgroundColor: '#03353C',
         image: (
           <Icon
             name="paper-plane-o"
@@ -42,7 +42,7 @@ export const Onboard = ({navigation}) => (
       {
         title: 'Get Notified',
         subtitle: 'We will send you notification as soon as something happened',
-        backgroundColor: '#003c8f',
+        backgroundColor: '#03353C',
         image: (
           <Icon name="bell-o" type="font-awesome" size={100} color="white" />
         ),
@@ -58,11 +58,11 @@ export const Onboard = ({navigation}) => (
             textStyle={{ color: '#003c8f' }}
             onPress={async () => {
               await generateMnemonic()
-              navigation.navigate('HomeScreen')
+              navigation.navigate('Registration')
             }}
           />
         ),
-        backgroundColor: '#003c8f',
+        backgroundColor: '#449342',
         image: (
           <Icon name="rocket" type="font-awesome" size={100} color="white" />
         ),

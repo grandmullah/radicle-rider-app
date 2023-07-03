@@ -48,7 +48,7 @@ export function OnboardStack() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="Onboard" options={{headerShown:false}} component={Onboard} />
-      <Screen name="Registration" component={RegistrationScreen} options={{headerShown:false}} />
+      <Screen name="Registration" component={RegistrationStack} options={{headerShown:false}} />
       <Screen name="HomeScreen" options={{headerShown:false}} component={AppStack} />
       
     </Navigator>
@@ -80,13 +80,15 @@ export function HomeScreens () {
 
 
 
-// function HomeScreen() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Home!</Text>
-//     </View>
-//   );
-// }
+export function RegistrationStack() {
+  return (
+    <Navigator screenOptions={{ headerShown: false }}>
+    <Screen name="Registration" component={RegistrationScreen} options={{headerShown:false}} />
+    <Screen name="HomeScreen" options={{headerShown:false}} component={AppStack} />
+    
+  </Navigator>
+  );
+}
 
 function SettingsScreen() {
   return (

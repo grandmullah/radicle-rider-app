@@ -19,6 +19,6 @@ export async function generateMnemonic ( ) {
     // console.log(publicKey)
     await SecureStore.setItemAsync('mnemonic', `${mnemonicAlice}`);
     await SecureStore.setItemAsync('onboardStatus', `true`);
-
+//api call for check
   
 }

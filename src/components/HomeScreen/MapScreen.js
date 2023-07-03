@@ -9,12 +9,13 @@ import MapViewDirections from 'react-native-maps-directions';
 import { colors,parameters } from '../../globals/styles';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateRide } from '../../app/features/locationSlice';
+import { updateRide, updatecurrentLocation, updatedrivers } from '../../app/features/locationSlice';
 /**
  * A screen component that displays a map with cars around it.
  * @returns A JSX element that displays the map and cars around it.
  */
 export  function MapScreen({origin,destination}) {
+
   const { width, height } = Dimensions.get('window');
   const dispatch = useDispatch()
   const API_MAP_KEY = process.env.API_KEY_MAP
@@ -36,7 +37,8 @@ export  function MapScreen({origin,destination}) {
 
       let {coords} = await Location.getCurrentPositionAsync({});
       // setLocation(location);
-      console.log(coords)
+      // console.log(coords)
+      dispatch(updatecurrentLocation(coords))
   }
 
   const map = useRef(null)
@@ -48,7 +50,7 @@ export  function MapScreen({origin,destination}) {
     setReady(ready)
   },[origin,destination])
   return (
-    <View style={{ flex: 1 }}>
+    <View >
     <View  style={styles.topLeft}>
     <Text style={styles.content}>rtt</Text>
     </View>
@@ -116,6 +118,7 @@ export  function MapScreen({origin,destination}) {
                           Distance:result.distance,
                           Duration:result.duration
                         }))
+                        dispatch(updatedrivers(origin))
                       }}
                     />
                   } 
